@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/wookies-react-balanso/static/css/main.073c9b0a.css",
-    "main.js": "/wookies-react-balanso/static/js/main.0528cd2b.js",
-    "static/js/787.55058c4b.chunk.js": "/wookies-react-balanso/static/js/787.55058c4b.chunk.js",
+    "main.js": "/wookies-react-balanso/static/js/main.c56e8753.js",
+    "static/js/787.5db59e05.chunk.js": "/wookies-react-balanso/static/js/787.5db59e05.chunk.js",
     "index.html": "/wookies-react-balanso/index.html",
     "main.073c9b0a.css.map": "/wookies-react-balanso/static/css/main.073c9b0a.css.map",
-    "main.0528cd2b.js.map": "/wookies-react-balanso/static/js/main.0528cd2b.js.map",
-    "787.55058c4b.chunk.js.map": "/wookies-react-balanso/static/js/787.55058c4b.chunk.js.map"
+    "main.c56e8753.js.map": "/wookies-react-balanso/static/js/main.c56e8753.js.map",
+    "787.5db59e05.chunk.js.map": "/wookies-react-balanso/static/js/787.5db59e05.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.0528cd2b.js"
+    "static/js/main.c56e8753.js"
   ]
 }
