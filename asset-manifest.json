@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/augustobalanso/wookies-react-balanso/static/css/main.073c9b0a.css",
+    "main.js": "/augustobalanso/wookies-react-balanso/static/js/main.88d86d14.js",
+    "static/js/787.55058c4b.chunk.js": "/augustobalanso/wookies-react-balanso/static/js/787.55058c4b.chunk.js",
+    "index.html": "/augustobalanso/wookies-react-balanso/index.html",
+    "main.073c9b0a.css.map": "/augustobalanso/wookies-react-balanso/static/css/main.073c9b0a.css.map",
+    "main.88d86d14.js.map": "/augustobalanso/wookies-react-balanso/static/js/main.88d86d14.js.map",
+    "787.55058c4b.chunk.js.map": "/augustobalanso/wookies-react-balanso/static/js/787.55058c4b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.88d86d14.js"
+  ]
+}
