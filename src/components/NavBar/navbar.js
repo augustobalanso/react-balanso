@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import CartWidget from './CartWidget.js'
 
 const pages = ['Productos','Blog'];
 const settings = ['Perfil', 'Mi cuenta', 'Dashboard', 'Cerrar Sesión'];
@@ -35,7 +36,7 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar sx={{ bgcolor: "#125B50" }} position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
         <Box
@@ -142,8 +143,9 @@ const NavBar = () => {
             ))}
           </Box>
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+          <Box sx={{ display: 'flex',flexGrow: 0, flexDirection: 'row' }}>
+            <CartWidget />
+            <Tooltip title="Abrir perfil">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
               </IconButton>
