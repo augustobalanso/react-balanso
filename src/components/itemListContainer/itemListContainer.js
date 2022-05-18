@@ -2,10 +2,29 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import ItemCount from '../ItemCount/ItemCount.js'
 import { Button, CardActions, Grid } from '@mui/material';
 // import arrayProds from '../Productos/backendsimulado.js';
 
-const ItemListContainer = ({ image, title, price}) => {
+
+
+const ItemListContainer = ({ image, title, price, stock }) => {
+
+    function stockMessage(stock){
+        if(stock === 0){
+            return(
+                <Typography sx={{color : 'red'}} >
+                    SIN STOCK
+                </Typography>
+            )
+        } else {
+            return(
+                <Typography>
+                    Stock : {stock}
+                </Typography>
+            )
+        }
+    }
 
     return (
             <Grid item md={4}>
@@ -27,7 +46,10 @@ const ItemListContainer = ({ image, title, price}) => {
                     <CardActions>
                         <div style={{ width : '100%', display : 'flex ', flexDirection : 'column'}}>
                             <Button variant="contained">VER MÁS</Button>
-                            <Button variant="outlined">COMPRAR</Button>
+                            <Typography variant={'h6'} sx={{ mt : '6px',color : '#6b6b6b'}}>
+                                {stockMessage(stock)}
+                            </Typography>
+                            <ItemCount image={image} title={title} price={price} stock={stock} />
                         </div>
                     </CardActions>
                 </Card>

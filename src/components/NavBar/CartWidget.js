@@ -1,11 +1,15 @@
-import * as React from 'react';
+import React from 'react';
 import Box from '@mui/material/Box';
+import Badge from '@mui/material/Badge';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { Typography } from '@mui/material';
 
+
+
 export default function TemporaryDrawer() {
+ 
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -35,19 +39,23 @@ export default function TemporaryDrawer() {
   );
 
   return (
-    <div>
-      {['right'].map((anchor) => (
-        <React.Fragment key={anchor}>
-          <Button sx={{ color : '#FFFFFF'}} onClick={toggleDrawer(anchor, true)}><ShoppingCart color='white' fontSize={'large'} sx={{ mr: '20px', mt : '2px'}} /></Button>
-          <Drawer
-            anchor={anchor}
-            open={state[anchor]}
-            onClose={toggleDrawer(anchor, false)}
-          >
-            {list(anchor)}
-          </Drawer>
-        </React.Fragment>
-      ))}
-    </div>
+        <div>
+          {['right'].map((anchor) => (
+            <React.Fragment key={anchor}>
+              <Button sx={{ color : '#FFFFFF', mr: '15px'}} onClick={toggleDrawer(anchor, true)}>
+                <Badge badgeContent={0} color="secondary">
+                  <ShoppingCart color='white' fontSize={'large'} />
+                </Badge>
+              </Button>
+              <Drawer
+                anchor={anchor}
+                open={state[anchor]}
+                onClose={toggleDrawer(anchor, false)}
+              >
+                {list(anchor)}
+              </Drawer>
+            </React.Fragment>
+          ))}
+        </div>
   );
 }
