@@ -1,7 +1,7 @@
 {
   "name": "wookies",
   "version": "0.1.0",
-  "homepage": "https://augustobalanso.github.io/wookies-react-balanso",
+  "homepage": ".",
   "private": false,
   "dependencies": {
     "@emotion/react": "^11.9.0",
