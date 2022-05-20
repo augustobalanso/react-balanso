@@ -5,8 +5,6 @@ import 'react-slideshow-image/dist/styles.css'
 
 const FadeExample = ({id,title,itemDesc}) => {
 
-    console.log(title)
-
   const fadeImages = [
     `./img/${id}/webp0.jpg`,
     `./img/${id}/webp1.jpg`,
