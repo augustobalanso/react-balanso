@@ -20,3 +20,9 @@ Proyecto realizado con REACT
 * Se agrega Modal para desplegar descripción del item y fotos
 * Se agrega Slideshow al modal para ver mejor el producto (no se para que me gasto si esto no es UX/UI)
 * Dejo console.log para que se vea el response de la api
+
+## 6to Desafio 
+
+* Se diseña en el home un ItemDetail de uno de los elementos de la API empleada en el desafio 5, se mantiene la misma estructura de ser el Container quien llame al objeto de la API y el Item quien despliega la data pasada por prop.
+* Si bien no entra en estas rubricas se habilitan botones del navbar enrutados a sus respectivas páginas, en vez de deshabilitar el home del desafio 5, se lo pasó a la ruta /productos.
+* Se crea blog el cual no es más que un feed RSS de una página de noticias/novedades de zapatillas (se hizo pura y exclusivamente para aprender a manipular el json/xml con el que responde el rss.)
