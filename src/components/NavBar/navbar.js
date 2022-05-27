@@ -12,7 +12,8 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import CartWidget from './CartWidget.js'
-
+import { Link } from 'react-router-dom'
+ 
 const pages = ['Productos','Blog'];
 const settings = ['Perfil', 'Mi cuenta', 'Dashboard', 'Cerrar Sesión'];
 
@@ -53,7 +54,7 @@ const NavBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/wookies-react-balanso"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -98,7 +99,11 @@ const NavBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link to={`/${page}`} style={{ textDecoration: 'none' , color: 'black' }} >
+                  <Typography textAlign="center">
+                   {page}
+                  </Typography>
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -138,7 +143,7 @@ const NavBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <Link style={{ textDecoration: 'none' , color: 'white' }} to={`/${page}`}>{page}</Link>
               </Button>
             ))}
           </Box>

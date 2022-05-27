@@ -35,6 +35,7 @@ export default function GroupSizesColors({stock}) {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          width:'100%',
           '& > *': {
             m: 1,
           },

@@ -1,7 +1,7 @@
 import React from 'react'
 import ItemCount from '../ItemCount/ItemCount'
 import Modal from './Modal'
-import { Card, CardMedia, CardContent, Typography,CardActions } from '@mui/material'
+import { Card, CardMedia, CardContent, Typography,CardActions, Button } from '@mui/material'
 
 const Item = ({title,stock,price,id,itemDesc,img}) => {
 
@@ -39,6 +39,9 @@ const Item = ({title,stock,price,id,itemDesc,img}) => {
             </CardContent>
             <CardActions>
                 <div style={{ width : '100%', display : 'flex ', flexDirection : 'column'}}>
+                    <Button variant="outlined" sx={{ mb: '8px' }} >
+                        VER PRODUCTO
+                    </Button>
                     <Modal title={title} itemDesc={itemDesc} id={id} />
                     {stockMessage(stock)}
                     <ItemCount stock={stock} />

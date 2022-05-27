@@ -8,7 +8,12 @@ export const ItemListContainer = () => {
     useEffect(() => {
         
         async function fetchAPI(){
-            const backendRequest = await fetch(`https://wookies-coderhouse-default-rtdb.firebaseio.com/stock.json`, {method:'GET'}, {mode: 'no-cors'})
+            const backendRequest = await fetch(`https://wookies-coderhouse-default-rtdb.firebaseio.com/stock.json`,
+            {headers : {
+            'Access-Control-Allow-Origin': '*',
+            }},
+            {method:'GET'}, 
+            {mode: 'no-cors'})
             const backendData = await backendRequest.json();
             return backendData
         }    
