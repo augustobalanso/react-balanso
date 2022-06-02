@@ -1,5 +1,4 @@
 import './App.css';
-import { Homepage } from './pages/Homepage';
 import { Blog } from './pages/Blog';
 import { ItemListContainer } from './components/ItemListContainer/ItemListContainer'
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer.js';

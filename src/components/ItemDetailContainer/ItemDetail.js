@@ -2,7 +2,6 @@ import { Card, Grid, CardContent, Typography, CardActions, ToggleButtonGroup, To
 import React from 'react'
 import { useState } from 'react'
 import { Carousel, CarouselItem } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
@@ -16,7 +15,7 @@ export const ItemDetail = ({FetchRes}) => {
     setTalle(newAlignment);
   };
 
-  const {color,category,id,img,itemDesc,manuf,type,price,stock,title} = FetchRes
+  const {itemDesc,manuf,type,price,stock,title} = FetchRes
 
   return(
     <div>
@@ -24,13 +23,13 @@ export const ItemDetail = ({FetchRes}) => {
       <Grid item xs={8}>
         <Carousel variant='dark'>
           <CarouselItem>
-            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp0.jpg`} />
+            <img alt='primerimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp0.jpg`} />
           </CarouselItem>
           <CarouselItem>
-            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp1.jpg`}></img>
+            <img alt='segundaimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp1.jpg`}></img>
           </CarouselItem>
           <CarouselItem>
-            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp2.jpg`}></img>
+            <img alt='terceraimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp2.jpg`}></img>
           </CarouselItem>
         </Carousel>
       </Grid>

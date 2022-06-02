@@ -12,7 +12,6 @@ export const Blog = () => {
         .then((rss) => {
             setRssResponse(rss.items.slice(0,9))
         })
-
         .catch((err) => console.log(err))
     }, [])
 
