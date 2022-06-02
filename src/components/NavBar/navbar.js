@@ -11,10 +11,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import MenuProducts from './MenuNavbar'
 import CartWidget from './CartWidget.js'
 import { Link } from 'react-router-dom'
  
-const pages = ['Productos','Blog'];
+const pages = ['Blog'];
 const settings = ['Perfil', 'Mi cuenta', 'Dashboard', 'Cerrar Sesión'];
 
 const NavBar = () => {
@@ -48,7 +49,7 @@ const NavBar = () => {
             display: { xs: 'none', md: 'flex' }
             }}
             alt="Your logo."
-            src="./logo.svg"
+            src="../logo.svg"
         />
           <Typography
             variant="h6"
@@ -122,7 +123,7 @@ const NavBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -137,13 +138,14 @@ const NavBar = () => {
             WOOKIES
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <MenuProducts />
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link style={{ textDecoration: 'none' , color: 'white' }} to={`/${page}`}>{page}</Link>
+                <Link to={`/${page}`} style={{ textDecoration: 'none' , color: 'white' }}>{page}</Link>
               </Button>
             ))}
           </Box>

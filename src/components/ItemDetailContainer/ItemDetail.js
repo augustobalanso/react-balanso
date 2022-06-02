@@ -2,31 +2,35 @@ import { Card, Grid, CardContent, Typography, CardActions, ToggleButtonGroup, To
 import React from 'react'
 import { useState } from 'react'
 import { Carousel, CarouselItem } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 import ItemCount  from '../ItemCount/ItemCount'
 
 export const ItemDetail = ({FetchRes}) => {
-
+  const navigate = useNavigate()
   const [talle, setTalle] = useState('0');
 
   const handleTalle = (event, newAlignment) => {
     setTalle(newAlignment);
   };
 
-  const {color,id,img,itemDesc,manuf,type,price,stock,title} = FetchRes
-  console.log('log desde DETAIL', FetchRes)
+  const {color,category,id,img,itemDesc,manuf,type,price,stock,title} = FetchRes
 
   return(
+    <div>
     <Grid container marginTop={3}>
       <Grid item xs={8}>
         <Carousel variant='dark'>
           <CarouselItem>
-            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`./img/${FetchRes.id}/webp0.jpg`} />
+            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp0.jpg`} />
           </CarouselItem>
           <CarouselItem>
-            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`./img/${FetchRes.id}/webp1.jpg`}></img>
+            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp1.jpg`}></img>
           </CarouselItem>
           <CarouselItem>
-            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`./img/${FetchRes.id}/webp2.jpg`}></img>
+            <img style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp2.jpg`}></img>
           </CarouselItem>
         </Carousel>
       </Grid>
@@ -38,6 +42,26 @@ export const ItemDetail = ({FetchRes}) => {
                                       minWidth: 275,
                                       height: 800 }}>
           <CardContent>
+            <Button style={{
+                      position: 'fixed',
+                      top:'100px',
+                      right:'90vw',
+                      textDecoration : 'none',
+                      color : 'black'}}
+                    onClick ={() => navigate(-1)}
+                    >
+                        
+            <ArrowCircleLeftIcon color={'primary'} fontSize={'large'} />
+            </Button>
+            {/* <Link style={{
+                      position: 'fixed',
+                      top:'100px',
+                      right:'90vw',
+                      textDecoration : 'none',
+                      color : 'black'}}  
+              to={`/Productos/`}>
+              <ArrowCircleLeftIcon color={'primary'} fontSize={'large'} />
+            </Link> */}
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {`Marca ${manuf}`}
             </Typography>
@@ -102,5 +126,6 @@ export const ItemDetail = ({FetchRes}) => {
         </Card>
       </Grid>
     </Grid>
+    </div>
   )
 }

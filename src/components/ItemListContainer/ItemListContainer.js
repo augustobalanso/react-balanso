@@ -1,8 +1,10 @@
 import React from 'react';
 import ItemList from './ItemList.js'
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 
 export const ItemListContainer = () => {
+    const { category } = useParams()
     const [StockJson, setStockJson] = useState([]);
 
     useEffect(() => {
@@ -18,17 +20,26 @@ export const ItemListContainer = () => {
             return backendData
         }    
 
-        setTimeout(() => {
-            fetchAPI()
-            .then(res =>{
-                setStockJson(res)
+        fetchAPI()
+            .then((response) =>{
+                console.log(response)
+                if(category == undefined){
+                    setStockJson(response)
+                } else {
+                    const filteredResponse = response.filter(item => item.category === category)
+                    setStockJson(filteredResponse)
+                }
+
             })
+            // .then(data =>{
+            //     setStockJson(data)
+            // })
             .catch(err =>{
                 console.log(err)
             }
             )
-        },2000)
-    },[])
+
+    },[category])
 
     return (
         <ItemList StockJson={StockJson} />
