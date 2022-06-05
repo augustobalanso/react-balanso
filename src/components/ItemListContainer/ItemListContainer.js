@@ -22,8 +22,7 @@ export const ItemListContainer = () => {
 
         fetchAPI()
             .then((response) =>{
-                console.log(response)
-                if(category == undefined){
+                if(category === undefined){
                     setStockJson(response)
                 } else {
                     const filteredResponse = response.filter(item => item.category === category)

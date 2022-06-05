@@ -49,13 +49,12 @@ const NavBar = () => {
             display: { xs: 'none', md: 'flex' }
             }}
             alt="Your logo."
-            src="../logo.svg"
+            src="./logo.svg"
         />
+        <Link style={{ color: 'white', textDecoration: 'none' }} to={'/'}>
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -68,6 +67,7 @@ const NavBar = () => {
           >
             WOOKIES
           </Typography>
+        </Link>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton

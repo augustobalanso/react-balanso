@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import ButtonGroup from '@mui/material/ButtonGroup';
 
-export default function GroupSizesColors({stock}) {
+export default function GroupSizesColors({stock, setShowCartLink, setCantidad}) {
     const [CartQty, setCartQty] = useState(1);
 
     const addQty = () => {
@@ -14,14 +14,15 @@ export default function GroupSizesColors({stock}) {
         setCartQty(CartQty - 1)
     }
 
-    const ConsoleItemQty = () => {
-        console.log(`Se agregaron ${CartQty === 1 ? CartQty + ' par' : CartQty + ' pares'} de zapatillas al carrito`)
+    const confirmedCart = () => {
+          setShowCartLink(true)
+          setCantidad(CartQty)
         setCartQty(1);
     }
 
     const buttons = [
         <Button key="rem" onClick={remQty} disabled={CartQty === 1}>-</Button>,
-        <Button key="buy" onClick={ConsoleItemQty} disabled={stock === 0}>
+        <Button key="buy" onClick={confirmedCart} disabled={stock === 0}>
             <Badge badgeContent={CartQty} invisible={CartQty === 1} color="secondary">
                 COMPRAR
             </Badge>
@@ -45,5 +46,6 @@ export default function GroupSizesColors({stock}) {
           {buttons}
         </ButtonGroup>
       </Box>
+
     );
 }

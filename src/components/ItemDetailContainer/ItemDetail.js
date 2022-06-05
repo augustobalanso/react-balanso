@@ -4,12 +4,14 @@ import { useState } from 'react'
 import { Carousel, CarouselItem } from 'react-bootstrap'
 import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
 import { Button } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import ItemCount  from '../ItemCount/ItemCount'
 
 export const ItemDetail = ({FetchRes}) => {
   const navigate = useNavigate()
   const [talle, setTalle] = useState('0');
+  const [cantidad, setCantidad] = useState('0')
+  const [ShowCartLink, setShowCartLink] = useState(false)
 
   const handleTalle = (event, newAlignment) => {
     setTalle(newAlignment);
@@ -23,13 +25,13 @@ export const ItemDetail = ({FetchRes}) => {
       <Grid item xs={8}>
         <Carousel variant='dark'>
           <CarouselItem>
-            <img alt='primerimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp0.jpg`} />
+            <img alt='primerimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../img/${FetchRes.id}/webp0.jpg`} />
           </CarouselItem>
           <CarouselItem>
-            <img alt='segundaimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp1.jpg`}></img>
+            <img alt='segundaimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../img/${FetchRes.id}/webp1.jpg`}></img>
           </CarouselItem>
           <CarouselItem>
-            <img alt='terceraimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../../img/${FetchRes.id}/webp2.jpg`}></img>
+            <img alt='terceraimagen' style={{ height: '800px', width:'800px', objectFit : 'contain' }} src={`../img/${FetchRes.id}/webp2.jpg`}></img>
           </CarouselItem>
         </Carousel>
       </Grid>
@@ -120,7 +122,14 @@ export const ItemDetail = ({FetchRes}) => {
             Stock:{stock}
           </Typography>
           <CardActions>
-            <ItemCount stock={stock} />
+          {!ShowCartLink ?  
+            <ItemCount setCantidad={setCantidad} setShowCartLink={setShowCartLink} stock={stock} /> 
+            : 
+            <Link style={{ textDecoration : 'none' }} to={'/Cart'}>
+              <Button style={{ width : '100%' }} variant='contained'>FINALIZAR COMPRA</Button>
+            </Link>
+          }
+          { ShowCartLink && console.log(`${cantidad} pares de talle ${talle} CONFIRMADOS POR ITEMCOUNT (CHILD) `) }      
           </CardActions>
         </Card>
       </Grid>

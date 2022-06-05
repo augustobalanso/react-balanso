@@ -1,10 +1,14 @@
 import React from 'react'
 import ItemCount from '../ItemCount/ItemCount'
 import Modal from './Modal'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardMedia, CardContent, Typography,CardActions, Button } from '@mui/material'
 
 const Item = ({title,stock,price,id,itemDesc,img,category}) => {
+
+    const [cantidad, setCantidad] = useState('0')
+    const [ShowCartLink, setShowCartLink] = useState(false)
 
     function stockMessage(stock){
         if(stock === 0){
@@ -27,7 +31,7 @@ const Item = ({title,stock,price,id,itemDesc,img,category}) => {
             <CardMedia
                 component="img"
                 height="100%"
-                image={img}
+                image={`/${img}`}
                 alt={id}
             />
             <CardContent>
@@ -47,7 +51,14 @@ const Item = ({title,stock,price,id,itemDesc,img,category}) => {
                     </Link>
                     <Modal title={title} itemDesc={itemDesc} id={id} />
                     {stockMessage(stock)}
-                    <ItemCount stock={stock} />
+                    {!ShowCartLink ?  
+            <ItemCount setCantidad={setCantidad} setShowCartLink={setShowCartLink} stock={stock} /> 
+            : 
+            <Link style={{ textDecoration : 'none' }} to={'/cart'}>
+              <Button style={{ width : '100%' }} variant='contained'>FINALIZAR COMPRA</Button>
+            </Link>
+          }
+          { ShowCartLink && console.log(`${cantidad} pares CONFIRMADOS POR ITEMCOUNT (CHILD) `) }   
                 </div>
             </CardActions>
         </Card>

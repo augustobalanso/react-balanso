@@ -2,7 +2,6 @@ import React from 'react'
 import { ItemDetail } from './ItemDetail'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Grid } from '@mui/material'
 
 export const ItemDetailContainer = () => {
     const { id } = useParams() 
@@ -15,7 +14,7 @@ export const ItemDetailContainer = () => {
             }},            
             {method:'GET'})
             .then((res) => res.json())
-            .then((data) => data.find((element)=> element.id==id))
+            .then((data) => data.find((element)=> element.id===id))
             .then((fetchedProd) => setFetchSingleProduct(fetchedProd))
     }, [id])
     
