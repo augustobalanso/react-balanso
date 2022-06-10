@@ -1,11 +1,25 @@
 import React from 'react'
+import CartTable from '../NavBar/CartTable'
+import { useContext } from 'react'
+import { CartContext } from '../../context/CartContext'
 
 export const Cart = () => {
+  const { CartItems } = useContext(CartContext)
+
+  console.log(CartItems)
+
+  let totalPrice = 0
+  
+  CartItems.forEach(element => {
+    totalPrice += (element.price*element.CartQty)
+  })
+
   return (
     <div>
-        <h1>
-          NUEVO CARRITO
-        </h1>
+      <CartTable />
+      <h1>
+        Total = {totalPrice}
+      </h1>
     </div>
   )
 }

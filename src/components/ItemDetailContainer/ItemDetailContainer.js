@@ -17,7 +17,7 @@ export const ItemDetailContainer = () => {
             .then((data) => data.find((element)=> element.id===id))
             .then((fetchedProd) => setFetchSingleProduct(fetchedProd))
     }, [id])
-    
+
     return (
             <ItemDetail FetchRes={FetchSingleProduct} />
     )

@@ -4,16 +4,18 @@ import Badge from '@mui/material/Badge';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import ShoppingCart from "@mui/icons-material/ShoppingCart";
-import { Typography } from '@mui/material';
+import { useContext } from 'react';
+import { CartContext } from '../../context/CartContext';
+import CartTable from './CartTable'
 
 
 
 export default function TemporaryDrawer() {
  
+  const { CartItems } = useContext(CartContext)
+  const { emptyCart } = useContext(CartContext)
+  const { consoleLogCart } = useContext(CartContext)
   const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
     right: false,
   });
 
@@ -27,14 +29,11 @@ export default function TemporaryDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : { xs: '350px', md : '400px', lg : '500px'}}}
+      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : { xs: '400px', md : '500px', lg : '600px'}}}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-        <Typography align='center' marginTop={'40px'} >
-            A futuro aqui habrá carrito
-        </Typography>
     </Box>
   );
 
@@ -52,6 +51,13 @@ export default function TemporaryDrawer() {
                 open={state[anchor]}
                 onClose={toggleDrawer(anchor, false)}
               >
+              <CartTable />
+              <Button onClick={() => emptyCart()} variant='outlined' >
+                VACIAR CARRITO
+              </Button>
+              <Button onClick={() => consoleLogCart()} variant='contained' >
+                CONSOLE.LOG DE CARTITEMS EN CONTEXT
+              </Button>
                 {list(anchor)}
               </Drawer>
             </React.Fragment>

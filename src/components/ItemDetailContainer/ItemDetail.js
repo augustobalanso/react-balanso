@@ -7,17 +7,12 @@ import { Button } from '@mui/material'
 import { useNavigate, Link } from 'react-router-dom'
 import ItemCount  from '../ItemCount/ItemCount'
 
+
 export const ItemDetail = ({FetchRes}) => {
   const navigate = useNavigate()
-  const [talle, setTalle] = useState('0');
-  const [cantidad, setCantidad] = useState('0')
   const [ShowCartLink, setShowCartLink] = useState(false)
 
-  const handleTalle = (event, newAlignment) => {
-    setTalle(newAlignment);
-  };
-
-  const {itemDesc,manuf,type,price,stock,title} = FetchRes
+  const {itemDesc,manuf,type,price,stock,title,img,id} = FetchRes
 
   return(
     <div>
@@ -83,53 +78,14 @@ export const ItemDetail = ({FetchRes}) => {
             </Typography>
             <Divider />
           </CardContent>
-          <Typography variant='' textAlign={'left'} paddingLeft={7} >
-            Talle
-          </Typography>
-          <CardActions sx={{ marginTop:'8px', marginBottom:'30px' , justifyContent:'center' }}>
-          <ToggleButtonGroup
-              color='primary'
-              value={talle}
-              exclusive
-              onChange={handleTalle}
-              aria-label="select Talle"
-          >
-              <ToggleButton value="40" aria-label="left aligned">
-                40
-              </ToggleButton>
-              <ToggleButton value="41" aria-label="left aligned">
-                41
-              </ToggleButton>
-              <ToggleButton value="42" aria-label="left aligned">
-                42
-              </ToggleButton>
-              <ToggleButton value="43" aria-label="left aligned">
-                43
-              </ToggleButton>
-              <ToggleButton value="44" aria-label="centered">
-                44
-              </ToggleButton>
-              <ToggleButton value="45" aria-label="right aligned">
-                45
-              </ToggleButton>
-              <ToggleButton value="46" aria-label="justified">
-                46
-              </ToggleButton>
-            </ToggleButtonGroup>
-          </CardActions>
-          <Divider />
-          <Typography marginTop={2}>
-            Stock:{stock}
-          </Typography>
-          <CardActions>
+          <CardActions sx={{ justifyContent: 'center' }} >
           {!ShowCartLink ?  
-            <ItemCount setCantidad={setCantidad} setShowCartLink={setShowCartLink} stock={stock} /> 
+            <ItemCount id={id} title={title} img={img} price={price} stock={stock} setShowCartLink={setShowCartLink} /> 
             : 
             <Link style={{ textDecoration : 'none' }} to={'/Cart'}>
               <Button style={{ width : '100%' }} variant='contained'>FINALIZAR COMPRA</Button>
             </Link>
           }
-          { ShowCartLink && console.log(`${cantidad} pares de talle ${talle} CONFIRMADOS POR ITEMCOUNT (CHILD) `) }      
           </CardActions>
         </Card>
       </Grid>

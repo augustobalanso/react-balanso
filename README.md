@@ -2,6 +2,12 @@
 
 Proyecto realizado con REACT
 
+## 8vo Desafio = Cart Context
+
+* Se agrega carrito funcional tanto al navbar como a la ruta /cart empleando el mismo componente CartTable.
+* Se emplean contextos y se añaden 4 funciones para interactuar con el carrito (add,delete,clear y console.log del carrito)
+* Se quita metodo de compra de ItemList, solo se canalizan adiciones al carrito desde ItemDetail
+
 
 ## 7mo Desafio 
 

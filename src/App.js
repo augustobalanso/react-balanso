@@ -8,6 +8,7 @@ import { Container } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles'
 import theme from './components/Theme/theme.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CartProvider from './context/CartContext'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -15,19 +16,19 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+          <CartProvider>
+            <NavBar />
 
-          <NavBar />
-
-          <Container>
-            <Routes>
-              <Route path='/' element={<ItemListContainer />} />
-              <Route path='/:category' element={<ItemListContainer />} />
-              <Route path='/:category/:id' element={<ItemDetailContainer />} />
-              <Route path='/Cart' element={<Cart />} />
-              <Route path='/Blog' element={<Blog />} />
-            </Routes> 
-          </Container>
-          
+            <Container>
+              <Routes>
+                <Route path='/' element={<ItemListContainer />} />
+                <Route path='/:category' element={<ItemListContainer />} />
+                <Route path='/:category/:id' element={<ItemDetailContainer />} />
+                <Route path='/Cart' element={<Cart />} />
+                <Route path='/Blog' element={<Blog />} />
+              </Routes> 
+            </Container>
+          </CartProvider>
         </BrowserRouter>
       </ThemeProvider>
     </div>
