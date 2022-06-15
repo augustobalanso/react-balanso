@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { CartContext } from '../../context/CartContext';
+import { Link } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -37,7 +39,11 @@ export default function CustomizedTables() {
     const rows = CartItems
 
     if ( rows.length===0 ){
-        return <div><h1>EL CARRITO ESTA VACIO</h1></div>
+        return <div>
+                  <Typography variant='h4' >
+                    El carrito está vacio, volvé al <Link to={'/'}>catálogo</Link>
+                  </Typography>
+              </div>
     } else {
         return <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="customized table">
@@ -60,7 +66,7 @@ export default function CustomizedTables() {
                 <StyledTableCell align="left">{row.title}</StyledTableCell>
                 <StyledTableCell align="right">{row.talle}</StyledTableCell>
                 <StyledTableCell align="right">{row.CartQty}</StyledTableCell>
-                <StyledTableCell align="right">${row.price}</StyledTableCell>
+                <StyledTableCell align="right">${row.price*row.CartQty}</StyledTableCell>
                 <StyledTableCell align="right">
                   <DeleteIcon onClick={() => deleteItemCart(row.cartConfirmID)} />
                 </StyledTableCell>

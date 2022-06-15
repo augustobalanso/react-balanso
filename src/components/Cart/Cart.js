@@ -2,16 +2,15 @@ import React from 'react'
 import CartTable from '../NavBar/CartTable'
 import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
+import { Link } from 'react-router-dom'
 
 export const Cart = () => {
   const { CartItems } = useContext(CartContext)
 
-  console.log(CartItems)
-
   let totalPrice = 0
   
   CartItems.forEach(element => {
-    totalPrice += (element.price*element.CartQty)
+    totalPrice += element.price
   })
 
   return (
