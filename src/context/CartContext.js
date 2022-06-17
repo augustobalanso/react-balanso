@@ -11,7 +11,6 @@ const CartProvider = ({children}) => {
         if(!isInCart){
             setCartItems(CartItems => [...CartItems, producto]);
         } else {
-            console.log('ESTO YA EXISTE EN TU CARRITO')
             isInCart.CartQty = isInCart.CartQty+producto.CartQty
         }
 

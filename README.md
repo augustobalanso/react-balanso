@@ -2,6 +2,10 @@
 
 Proyecto realizado con REACT
 
+## 9no Desafio - Cart View
+* Se agrega /Cart el cual reutiliza la misma tabla que aplica CartWidget
+* Se implementa un <p> condicional que aparece solo si está vacío el carrito
+
 ## 8vo Desafio = Cart Context
 
 * Se agrega carrito funcional tanto al navbar como a la ruta /cart empleando el mismo componente CartTable.
