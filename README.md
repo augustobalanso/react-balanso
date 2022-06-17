@@ -2,6 +2,9 @@
 
 Proyecto realizado con REACT
 
+## 10mo Desafío - Item Collection desde Firebase
+* Se cambia toda la estructura de toma de datos desde API propia, para incluir la toma desde modulo de firebase.
+
 ## 9no Desafio - Cart View
 * Se agrega /Cart el cual reutiliza la misma tabla que aplica CartWidget
 * Se implementa un <p> condicional que aparece solo si está vacío el carrito
