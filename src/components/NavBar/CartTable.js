@@ -38,14 +38,10 @@ export default function CustomizedTables() {
     const { CartItems, deleteItemCart } = useContext(CartContext)
     const rows = CartItems
 
-    if ( rows.length===0 ){
-        return <div>
-                  <Typography variant='h4' >
-                    El carrito está vacio, volvé al <Link to={'/'}>catálogo</Link>
-                  </Typography>
-              </div>
-    } else {
-        return <TableContainer component={Paper}>
+
+    return (
+      
+      <TableContainer component={Paper}>
         <Table sx={{ minWidth: 500 }} aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -75,6 +71,7 @@ export default function CustomizedTables() {
           </TableBody>
         </Table>
       </TableContainer>
-    }
+      
+    )
 
 }

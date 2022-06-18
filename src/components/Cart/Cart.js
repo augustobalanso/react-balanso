@@ -1,7 +1,8 @@
 import React from 'react'
-import CartTable from '../NavBar/CartTable'
 import { useContext } from 'react'
 import { CartContext } from '../../context/CartContext'
+import CartStepper from './CartStepper.js'
+import { Link } from 'react-router-dom'
 
 export const Cart = () => {
   const { CartItems } = useContext(CartContext)
@@ -14,10 +15,11 @@ export const Cart = () => {
 
   return (
     <div>
-      <CartTable />
-      <h1>
-        Total = {`$${totalPrice}`}
-      </h1>
+      {CartItems.length === 0 
+        ? 
+        <h1>Carrito Vacio, volvé para agregar <Link to={'/'}>productos</Link> </h1> 
+        : 
+        <CartStepper />}
     </div>
   )
 }
