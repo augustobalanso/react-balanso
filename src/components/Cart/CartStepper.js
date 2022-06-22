@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -8,12 +9,22 @@ import Typography from '@mui/material/Typography';
 import CartTable from '../NavBar/CartTable'
 import { CartFormAddress } from './CartFormAddress';
 import { CartFormCredCard } from './CartFormCredCard';
+import { CartContext } from '../../context/CartContext';
 
 const steps = ['Revisá tu compra', 'Datos de tu Domicilio', 'Pago'];
 
-export default function HorizontalLinearStepper() {
+export default function HorizontalLinearStepper({total}) {
+  const { CartOrder, CartItems, setCartOrder, CartOrderRef, CartTotalRef, saveData} = useContext(CartContext)
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+
+  const buildOrder = () => {
+      setCartOrder({...CartOrder, items : CartItems, total : CartTotalRef.current})
+}
+
+  const uploadOrder = () => {
+    saveData(CartOrderRef)
+  }
 
   const isStepOptional = (step) => {
     return step === 3;
@@ -58,7 +69,7 @@ export default function HorizontalLinearStepper() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', mt: '24px' }}>
       <Stepper activeStep={activeStep}>
         {steps.map((label, index) => {
           const stepProps = {};
@@ -92,7 +103,7 @@ export default function HorizontalLinearStepper() {
         <React.Fragment>
           <Typography sx={{ mt: 2, mb: 1 }}>
             {activeStep === 0 && (
-              <CartTable />
+              <CartTable total={total} />
             )}
             {activeStep === 1 && (
               <CartFormAddress />
@@ -118,7 +129,7 @@ export default function HorizontalLinearStepper() {
             )}
 
             <Button onClick={handleNext}>
-              {activeStep === steps.length - 1 ? 'Finalizar' : 'Siguiente'}
+              {activeStep === steps.length - 1 ? <div onClick={uploadOrder}>Finalizar</div> : <div onClick={buildOrder}>Siguiente</div>}
             </Button>
           </Box>
         </React.Fragment>

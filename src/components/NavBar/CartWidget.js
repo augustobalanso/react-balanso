@@ -7,14 +7,13 @@ import ShoppingCart from "@mui/icons-material/ShoppingCart";
 import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import CartTable from './CartTable'
+import { Link } from 'react-router-dom';
 
 
 
 export default function TemporaryDrawer() {
  
-  const { CartItems } = useContext(CartContext)
   const { emptyCart } = useContext(CartContext)
-  const { consoleLogCart } = useContext(CartContext)
   const [state, setState] = React.useState({
     right: false,
   });
@@ -55,8 +54,10 @@ export default function TemporaryDrawer() {
               <Button onClick={() => emptyCart()} variant='outlined' >
                 VACIAR CARRITO
               </Button>
-              <Button onClick={() => consoleLogCart()} variant='contained' >
-                CONSOLE.LOG DE CARTITEMS EN CONTEXT
+              <Button variant='contained' >
+                <Link style={{ color: 'inherit' ,textDecoration: 'none' }} to={'/Cart'}>
+                  FINALIZAR COMPRA
+                </Link>
               </Button>
                 {list(anchor)}
               </Drawer>

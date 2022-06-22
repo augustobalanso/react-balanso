@@ -19,8 +19,6 @@ export const ItemDetailContainer = () => {
             const singleProduct = docSnap.data()
             singleProduct.id = id
     
-            console.log(singleProduct)
-    
             setFetchSingleProduct(singleProduct)
         }
     

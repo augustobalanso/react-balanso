@@ -3,23 +3,7 @@ import Modal from './Modal'
 import { Link } from 'react-router-dom'
 import { Card, CardMedia, CardContent, Typography,CardActions, Button } from '@mui/material'
 
-const Item = ({title,stock,price,id,itemDesc,img,category}) => {
-
-    function stockMessage(stock){
-        if(stock === 0){
-            return(
-                <Typography sx={{color : 'red'}} >
-                    SIN STOCK
-                </Typography>
-            )
-        } else {
-            return(
-                <Typography>
-                    Stock : {stock}
-                </Typography>
-            )
-        }
-    }   
+const Item = ({title,price,id,itemDesc,img,category}) => {
 
     return (
         <Card sx={{ maxWidth: 345, marginTop: '50px' }} variant={'outlined'}>
