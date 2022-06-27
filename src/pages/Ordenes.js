@@ -83,8 +83,8 @@ export const Ordenes = () => {
                         noValidate
                         autoComplete="off"
                         >
-                        <TextField id="outlined-basic" value={order.buyer.name} label="Nombre" variant="outlined" disabled/>
-                        <TextField id="outlined-basic" value={order.buyer.address} label="Domicilio" variant="outlined" disabled/>
+                        <TextField id="outlined-basic" value={order.buyer.name} label="Nombre de quien recibe" variant="outlined" disabled/>
+                        <TextField id="outlined-basic" value={order.buyer.address} label="Direccion de envio" variant="outlined" disabled/>
                         <TextField id="outlined-basic" value={order.credcard.number.substr(order.credcard.number.length - 4)} label="4-digitos Tarjeta" variant="outlined" disabled/>
                         </Box>
                                        

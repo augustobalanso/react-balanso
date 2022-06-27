@@ -2,6 +2,14 @@
 
 Proyecto realizado con REACT
 
+## Proyecto FINAL 
+* Se agrega nuevo pagina para consultar todas las órdenes existentes en Firestore (Obviamente que no se realiza filtrado de consulta x cliente)
+* Nuevo badge en icono de carrito del navbar accediendo al contexto.
+* Alerta con ID de doc creado en Firestore a la hora de subir la órden
+* Se limpia UX para que el usuario no llegue a errores ni dead-ends en los pasos de adición al carrito.
+* Se arregla error al tratar de reintentar pedidos sin refrescar (totales mal calculados)
+
+
 ## 10mo Desafío - Item Collection desde Firebase
 * Se cambia toda la estructura de toma de datos desde API propia, para incluir la toma desde modulo de firebase.
 

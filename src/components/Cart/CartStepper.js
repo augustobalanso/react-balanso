@@ -23,18 +23,25 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 
 export default function HorizontalLinearStepper({total}) {
-  const { CartOrder, CartItems, setCartOrder, Success, CartOrderRef, CartTotalRef, saveData} = useContext(CartContext)
+  const { CartOrder, CartItems, emptyCart, emptyOrder,recalculateTotal, setCartOrder, Success, CartOrderRef, CartTotalRef, saveData} = useContext(CartContext)
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
   const [open, setOpen] = React.useState(false);
 
   const buildOrder = () => {
+      recalculateTotal()
       setCartOrder({...CartOrder, items : CartItems, total : CartTotalRef.current})
-}
+    }
+
 
   const uploadOrder = () => {
     saveData(CartOrderRef.current)
     handleClick()
+    setTimeout(() => {
+      emptyCart()
+      emptyOrder()
+    }, 1500);
+
   }
 
   const isStepOptional = (step) => {
@@ -120,6 +127,12 @@ export default function HorizontalLinearStepper({total}) {
             acá
             </Link>
           </Typography>
+          <Typography variant='h5'>
+            Volver a la&nbsp; 
+            <Link to={'/'}>
+              Home
+            </Link>
+          </Typography>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
                 <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
                   Orden nro: {Success}
@@ -131,9 +144,12 @@ export default function HorizontalLinearStepper({total}) {
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
-            {activeStep === 0 && (
-              <CartTable total={total} />
+          <div style={{ marginTop: 30, marginBottom: 10 }}>
+            {activeStep === 0 && CartItems.length !== 0 && (
+            <CartTable total={total} />
+            )}
+            {activeStep === 0 && CartItems.length === 0 && (
+            <Typography variant='h5'>Carrito Vacio - volver a <Link to={'/'} >PRODUCTOS</Link></Typography>
             )}
             {activeStep === 1 && (
               <CartFormAddress />
@@ -141,7 +157,7 @@ export default function HorizontalLinearStepper({total}) {
             {activeStep === 2 && (
               <CartFormCredCard />
             )}
-          </Typography>
+          </div>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Button
               color="inherit"
@@ -158,7 +174,7 @@ export default function HorizontalLinearStepper({total}) {
               </Button>
             )}
 
-            <Button onClick={handleNext}>
+            <Button disabled={CartItems.length === 0} onClick={handleNext}>
               {activeStep === steps.length - 1 ? <div onClick={uploadOrder}>Finalizar</div> : <div onClick={buildOrder}>Siguiente</div>}
             </Button>
           </Box>

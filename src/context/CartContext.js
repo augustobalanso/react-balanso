@@ -8,7 +8,7 @@ const CartContext = createContext();
 const CartProvider = ({children}) => {
 
     const [CartTotal, setCartTotal, CartTotalRef] = useState(0)
-    const [CartItems, setCartItems] = useState([])
+    const [CartItems, setCartItems, CartItemsRef] = useState([])
     const [Success, setSuccess] = useState()
     const [CartOrder, setCartOrder, CartOrderRef] = useState({
             buyer: {
@@ -36,7 +36,28 @@ const CartProvider = ({children}) => {
         } else {
             isInCart.CartQty = isInCart.CartQty+producto.CartQty
         }
-        setCartTotal(CartTotal+(producto.price*producto.CartQty))
+        recalculateTotal()
+        // setCartTotal(CartTotal+(producto.price*producto.CartQty))
+    }
+
+    const emptyOrder = () => {
+        setCartOrder({
+            buyer: {
+                name: '',
+                phone: '',
+                email: '',
+                address: '',
+                notes: ''
+            },
+            credcard: {
+                cvc: '',
+                expiry: '',
+                name: '',
+                number: ''
+            },
+            items: [],
+            total: 0
+            })
     }
 
     const emptyCart = () => {
@@ -46,9 +67,18 @@ const CartProvider = ({children}) => {
     const deleteItemCart = (productoID) => {
         let filteredItems = CartItems.filter(cartItem => cartItem.cartConfirmID !== productoID)
         setCartItems(filteredItems)
+        recalculateTotal()
+    }
+
+    const recalculateTotal = () => {
+            setCartTotal(0)
+            CartItemsRef.current.forEach((element) => {
+            setCartTotal(CartTotalRef.current+element.price*element.CartQty)
+            })
     }
 
     const saveData = async (newOrder) => {
+        recalculateTotal()
         const orderFirebase = collection(db,'ordenes')
         const orderDoc = await addDoc(orderFirebase, newOrder)
         console.log('orden subida: ', orderDoc)
@@ -64,9 +94,12 @@ const CartProvider = ({children}) => {
         CartOrderRef,
         Success,
         saveData,
+        recalculateTotal,
         setCartTotal,
         setCartOrder,
+        setCartItems,
         addProdToCart,
+        emptyOrder,
         emptyCart,
         deleteItemCart
     }
