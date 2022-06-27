@@ -10,24 +10,47 @@ import CartTable from '../NavBar/CartTable'
 import { CartFormAddress } from './CartFormAddress';
 import { CartFormCredCard } from './CartFormCredCard';
 import { CartContext } from '../../context/CartContext';
+import Snackbar from '@mui/material/Snackbar';
+import { Link } from 'react-router-dom'
+import MuiAlert from '@mui/material/Alert'
 
 const steps = ['Revisá tu compra', 'Datos de tu Domicilio', 'Pago'];
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+
+
 export default function HorizontalLinearStepper({total}) {
-  const { CartOrder, CartItems, setCartOrder, CartOrderRef, CartTotalRef, saveData} = useContext(CartContext)
+  const { CartOrder, CartItems, setCartOrder, Success, CartOrderRef, CartTotalRef, saveData} = useContext(CartContext)
   const [activeStep, setActiveStep] = React.useState(0);
   const [skipped, setSkipped] = React.useState(new Set());
+  const [open, setOpen] = React.useState(false);
 
   const buildOrder = () => {
       setCartOrder({...CartOrder, items : CartItems, total : CartTotalRef.current})
 }
 
   const uploadOrder = () => {
-    saveData(CartOrderRef)
+    saveData(CartOrderRef.current)
+    handleClick()
   }
 
   const isStepOptional = (step) => {
     return step === 3;
+  };
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   const isStepSkipped = (step) => {
@@ -64,9 +87,6 @@ export default function HorizontalLinearStepper({total}) {
     });
   };
 
-  const handleReset = () => {
-    setActiveStep(0);
-  };
 
   return (
     <Box sx={{ width: '100%', mt: '24px' }}>
@@ -91,12 +111,22 @@ export default function HorizontalLinearStepper({total}) {
       </Stepper>
       {activeStep === steps.length ? (
         <React.Fragment>
-          <Typography sx={{ mt: 2, mb: 1 }}>
+          <Typography variant='h3' sx={{ mt: 2, mb: 1 }}>
             Gracias por tu compra!
           </Typography>
+          <Typography variant='h5'>
+            Podés verificar tus pedidos&nbsp;
+            <Link to={'/Ordenes'} >
+            acá
+            </Link>
+          </Typography>
+          <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                  Orden nro: {Success}
+                </Alert>
+          </Snackbar>
           <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
             <Box sx={{ flex: '1 1 auto' }} />
-            <Button onClick={handleReset}>Reset</Button>
           </Box>
         </React.Fragment>
       ) : (

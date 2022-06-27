@@ -10,6 +10,7 @@ import theme from './components/Theme/theme.js'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CartProvider from './context/CartContext'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Ordenes } from './pages/Ordenes';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                 <Route path='/:category/:id' element={<ItemDetailContainer />} />
                 <Route path='/Cart' element={<Cart />} />
                 <Route path='/Blog' element={<Blog />} />
+                <Route path='/Ordenes' element={<Ordenes />} />
               </Routes> 
             </Container>
           </CartProvider>

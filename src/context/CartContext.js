@@ -9,6 +9,7 @@ const CartProvider = ({children}) => {
 
     const [CartTotal, setCartTotal, CartTotalRef] = useState(0)
     const [CartItems, setCartItems] = useState([])
+    const [Success, setSuccess] = useState()
     const [CartOrder, setCartOrder, CartOrderRef] = useState({
             buyer: {
                 name: '',
@@ -51,6 +52,7 @@ const CartProvider = ({children}) => {
         const orderFirebase = collection(db,'ordenes')
         const orderDoc = await addDoc(orderFirebase, newOrder)
         console.log('orden subida: ', orderDoc)
+        setSuccess(orderDoc.id)
     }
 
 
@@ -60,6 +62,7 @@ const CartProvider = ({children}) => {
         CartTotal,
         CartTotalRef,
         CartOrderRef,
+        Success,
         saveData,
         setCartTotal,
         setCartOrder,

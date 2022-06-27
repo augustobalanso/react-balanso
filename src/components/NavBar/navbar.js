@@ -15,7 +15,7 @@ import MenuProducts from './MenuNavbar'
 import CartWidget from './CartWidget.js'
 import { Link } from 'react-router-dom'
  
-const pages = ['Blog'];
+const pages = ['Blog', 'Ordenes'];
 const settings = ['Perfil', 'Mi cuenta', 'Dashboard', 'Cerrar Sesión'];
 
 const NavBar = () => {

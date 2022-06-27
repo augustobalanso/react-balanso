@@ -8,12 +8,13 @@ import { useContext } from 'react';
 import { CartContext } from '../../context/CartContext';
 import CartTable from './CartTable'
 import { Link } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 
 
 export default function TemporaryDrawer() {
  
-  const { emptyCart } = useContext(CartContext)
+  const { emptyCart, CartItems } = useContext(CartContext)
   const [state, setState] = React.useState({
     right: false,
   });
@@ -41,7 +42,7 @@ export default function TemporaryDrawer() {
           {['right'].map((anchor) => (
             <React.Fragment key={anchor}>
               <Button sx={{ color : '#FFFFFF', mr: '15px'}} onClick={toggleDrawer(anchor, true)}>
-                <Badge badgeContent={0} color="secondary">
+                <Badge badgeContent={CartItems.length} color="secondary">
                   <ShoppingCart color='white' fontSize={'large'} />
                 </Badge>
               </Button>
@@ -50,15 +51,22 @@ export default function TemporaryDrawer() {
                 open={state[anchor]}
                 onClose={toggleDrawer(anchor, false)}
               >
-              <CartTable />
-              <Button onClick={() => emptyCart()} variant='outlined' >
-                VACIAR CARRITO
-              </Button>
-              <Button variant='contained' >
-                <Link style={{ color: 'inherit' ,textDecoration: 'none' }} to={'/Cart'}>
-                  FINALIZAR COMPRA
-                </Link>
-              </Button>
+                {(CartItems.length !== 0 ? 
+                  <div>
+                  <CartTable />
+                  <Button fullWidth onClick={() => emptyCart()} variant='outlined'>
+                    VACIAR CARRITO
+                  </Button>
+                  <Button fullWidth variant='contained' >
+                    <Link style={{ color: 'inherit' ,textDecoration: 'none' }} to={'/Cart'}>
+                    FINALIZAR COMPRA
+                    </Link>
+                  </Button>
+                  </div>
+                   : 
+                  <Typography sx={{ margin: '40px'}} align='center' variant='h4'>
+                    Carrito Vacio
+                  </Typography>)}
                 {list(anchor)}
               </Drawer>
             </React.Fragment>
