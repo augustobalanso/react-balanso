@@ -2,6 +2,9 @@
 
 Proyecto realizado con REACT
 
+
+[![Alt text](https://img.youtube.com/vi/NZzaGSugv3Q/0.jpg)](https://www.youtube.com/watch?v=NZzaGSugv3Q)
+
 ## Proyecto FINAL 
 * Se agrega nuevo pagina para consultar todas las órdenes existentes en Firestore (Obviamente que no se realiza filtrado de consulta x cliente)
 * Nuevo badge en icono de carrito del navbar accediendo al contexto.
