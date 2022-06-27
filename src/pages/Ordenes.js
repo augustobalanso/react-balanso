@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material'
+import { Accordion, Divider, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { collection, getDocs } from 'firebase/firestore';
 import db from "../Utils/firebaseConfig";
@@ -63,15 +63,17 @@ export const Ordenes = () => {
         <div>
             {orderSnapshotRef.current.map((order) => {
                 return (
-                    <Accordion key={order.id.substr(order.id.length - 8)} sx={{ mt: '60px' }} >
+                    <Accordion key={order.id.substr(order.id.length - 8)} sx={{ mt: '60px', justifyContent: 'space-between' }} >
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
-                        sx={{ justifyContent: "space-between" }}
                         >
-                        <Typography>Orden nro. : {order.id} -- </Typography>
-                        <Typography>-   $ {order.total}</Typography>
+                        <Typography>Nombre: {order.buyer.name}&nbsp;&nbsp;&nbsp;</Typography>
+                        <Divider  color="black" orientation="vertical" flexItem/>
+                        <Typography>$&nbsp;{order.total}&nbsp;&nbsp;&nbsp;&nbsp;</Typography>
+                        <Divider color="black" orientation="vertical" flexItem/>
+                        <Typography>Orden nro. : {order.id}&nbsp;&nbsp;</Typography>
                         </AccordionSummary>
                         <AccordionDetails>
 
