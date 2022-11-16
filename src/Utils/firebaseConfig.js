@@ -8,6 +8,7 @@ import { getFirestore } from "firebase/firestore"
 const firebaseConfig = {
   apiKey: "AIzaSyCuVQGsWKJ6wFNzMIdrSpFyB_CzTr2E3tE",
   authDomain: "wookies-coderhouse.firebaseapp.com",
+  databaseURL: "https://wookies-coderhouse-default-rtdb.firebaseio.com",
   projectId: "wookies-coderhouse",
   storageBucket: "wookies-coderhouse.appspot.com",
   messagingSenderId: "225465818750",
